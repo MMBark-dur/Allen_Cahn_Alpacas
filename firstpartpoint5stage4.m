@@ -1,6 +1,6 @@
 c0 = 0.4;
 T = 10.0;
-tau_list = [0.01, 0.2, 2.0];
+tau_list = [0.01, 0.2, 0.8];
 
 for tau = tau_list
     [t, Cn, En] = simulate_stage3(c0, T, tau);
