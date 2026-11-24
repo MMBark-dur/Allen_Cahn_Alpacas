@@ -39,5 +39,4 @@ cnum = xmid / T;
 fprintf('Final wave centre: %.6f\n', xmid);
 fprintf('Numerical wave speed: %.6f\n', cnum);
 
-%Final wave centre: 0.212126  Numerical wave speed: 0.021213 (This is it
-%for now)
+%Final wave centre: 0.212126  Numerical wave speed: 0.021213 (This is the result after substituting in epsilon )
