@@ -5,6 +5,8 @@ T = 10;
 
 h = 0.01; % space step (adjustable)
 dt = 0.01; % time step (adjustable)
+%dt = 0.005 
+%dt=0.0025
 x = linspace(a, b, round((b-a)/h) + 1);
 
 u0 = 0.5 * (1 - tanh(x / (2 * sqrt(2) * epsilon)));
@@ -23,6 +25,7 @@ for s = 1:round(T/dt)   %s: time step index
 end
 
 %check plot
+figure(1)
 plot(x, u0, '--', x, u, '-')
 xlabel('x')
 ylabel('u')
@@ -39,4 +42,21 @@ cnum = xmid / T;
 fprintf('Final wave centre: %.6f\n', xmid);
 fprintf('Numerical wave speed: %.6f\n', cnum);
 
-%Final wave centre: 0.212126  Numerical wave speed: 0.021213 (This is the result after substituting in epsilon )
+%Final wave centre: 0.212126  Numerical wave speed: 0.021213 (This is it
+%for now)
+
+cana = 3 * sqrt(2) * epsilon / 2; % analytic wave speed
+uref = 0.5 * (1 - tanh((x - cana * T) / (2 * sqrt(2) * epsilon)));
+%reference profile at t=10
+
+figure(2)
+plot(x, u, '-', x, uref, '--')
+xlabel('x')
+ylabel('u')
+legend('Forward Euler', 'Analytic reference')
+title('Comparison at t = 10')
+grid on
+
+% maximum absolute error
+errmax = max(abs(u - uref));
+fprintf('Maximum absolute error at t = %.1f: %.6e\n', T, errmax);
